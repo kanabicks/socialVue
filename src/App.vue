@@ -13,7 +13,7 @@
       <v-list>
         <v-list-item two-line>
           <v-list-item-avatar>
-            <img :src="'https://randomuser.me/api/portraits/men/1.jpg'" />
+            <img :src=" `https://randomuser.me/api/portraits/men/${ $store.state.userId }` " />
           </v-list-item-avatar>
 
           <v-list-item-content class="text-left">
