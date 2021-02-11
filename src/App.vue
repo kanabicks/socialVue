@@ -2,13 +2,13 @@
   <v-app>
     <v-navigation-drawer
       v-model="navigation"
-      absolute
-      temporary
+      app
+      color="dark-grey"
       dark
       expand-on-hover
+      hide-overlay
       permanent
       right
-      app
     >
       <v-list>
         <v-list-item two-line>
@@ -21,6 +21,7 @@
               SocialLink
             </v-list-item-title>
             <v-list-item-subtitle>Alexander Pavlovich</v-list-item-subtitle>
+            <router-link/>
           </v-list-item-content>
         </v-list-item>
       </v-list>
@@ -32,7 +33,7 @@
           <v-list-item-icon>
             <v-icon>mdi-folder</v-icon>
           </v-list-item-icon>
-          <v-list-item-title>Главная</v-list-item-title>
+          <v-list-item-title> <router-link to="../User.vue">Главная</router-link></v-list-item-title>
         </v-list-item>
         <v-list-item link>
           <v-list-item-icon>
@@ -81,7 +82,9 @@
         class="primary lighten-2 py-4 text-center white--text"
         cols="12"
       >
-        {{ new Date().getFullYear() }} — <strong>Vuetify</strong>
+        {{ new Date().getFullYear() }} — <strong>Social Network
+
+        </strong>
       </v-col>
     </v-row>
   </v-footer>
