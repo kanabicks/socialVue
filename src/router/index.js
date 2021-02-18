@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-//import { component } from 'vue/types/umd'
 import User from '../views/User.vue'
 import Login from '../views/Login.vue'
 import home from '../components/home.vue'
@@ -32,3 +31,4 @@ const router = new VueRouter({
 })
 
 export default router
+

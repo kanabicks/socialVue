@@ -1,7 +1,6 @@
 <template>
   <v-app>
     <v-navigation-drawer
-      v-model="navigation"
       app
       color="dark-grey"
       dark
@@ -10,85 +9,48 @@
       permanent
       right
     >
-      <v-list>
+      <v-list nav shaped dense>
         <v-list-item two-line>
           <v-list-item-avatar>
-            <img :src=" `https://randomuser.me/api/portraits/men/${ $store.state.userId }` " />
+            <img
+              v-bind:src="`https://randomuser.me/api/portraits/men/${$store.state.userData.id}.jpg`"
+            />
           </v-list-item-avatar>
-
-          <v-list-item-content class="text-left">
-            <v-list-item-title class="font-weight-black">
-              SocialLink
+          <v-list-item-content>
+            <v-list-item-title>
+              {{ title }}
             </v-list-item-title>
-            <v-list-item-subtitle>Alexander Pavlovich</v-list-item-subtitle>
-            <router-link/>
+            <v-list-item-subtitle>
+              {{ $store.state.userData.name }}
+            </v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
-      </v-list>
 
-      <v-divider></v-divider>
+        <v-divider class="my-3"></v-divider>
 
-      <v-list nav dense>
-        <v-list-item link>
+        <v-list-item link to="/">
           <v-list-item-icon>
-            <v-icon>mdi-folder</v-icon>
+            <v-icon>mdi-home-outline</v-icon>
           </v-list-item-icon>
-          <v-list-item-title> <router-link to="../User.vue">Главная</router-link></v-list-item-title>
+          <v-list-item-content> Главная </v-list-item-content>
         </v-list-item>
-        <v-list-item link>
+
+        <v-list-item link to="/users">
           <v-list-item-icon>
-            <v-icon>mdi-account-multiple</v-icon>
+            <v-icon>mdi-account-outline</v-icon>
           </v-list-item-icon>
-          <v-list-item-title
-            ><router-link to="/social/src/views/User.vue"
-              >My profile</router-link
-            ></v-list-item-title
-          >
-        </v-list-item>
-        <v-list-item link>
-          <v-list-item-icon>
-            <v-icon>mdi-star</v-icon>
-          </v-list-item-icon>
-          <v-list-item-title>Найти друзей</v-list-item-title>
+          <v-list-item-content>
+            Найти друзей
+          </v-list-item-content>
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
 
-    <v-main class="px-12 py-3">
+    <v-content class="px-12 py-3" app>
       <v-container fluid>
-        
+        <router-view />
       </v-container>
-    </v-main>
-    
-    <v-footer
-    color="primary lighten-1"
-    padless
-  >
-    <v-row
-      justify="center"
-      no-gutters
-    >
-      <v-btn
-        v-for="link in links"
-        :key="link"
-        color="white"
-        text
-        rounded
-        class="my-2"
-      >
-        {{ link }}
-      </v-btn>
-      <v-col
-        class="primary lighten-2 py-4 text-center white--text"
-        cols="12"
-      >
-        {{ new Date().getFullYear() }} — <strong>Social Network
-
-        </strong>
-      </v-col>
-    </v-row>
-  </v-footer>
-
+    </v-content>
   </v-app>
 </template>
 
@@ -99,18 +61,8 @@ export default {
   components: {},
 
   data: () => ({
-    navigation: false,
-    links: [
-        'Home',
-        'About Us',
-        'Team',
-        'Services',
-        'Blog',
-        'Contact Us',
-      ],
+    nav: true,
+    title: "SocialVue",
   }),
 };
 </script>
-
-<style>
-</style>

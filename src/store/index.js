@@ -14,10 +14,11 @@ export default new Vuex.Store({
   mutations: {
     setUID(state, id){
         state.userId = id;
-        console.log('UserId was set to ' + userId);
+        //console.log('UserId was set to ' + userId);
     },
     setFirstName(state, fn){
         state.userData.firstname = fn;
     }
   }
 })
+
