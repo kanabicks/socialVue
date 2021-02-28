@@ -6,18 +6,17 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     userData:{
-      id: '9',
-      firstname: '',
-      lastname: ''
+      id: '-1',
+      name: '',
     },
   },
   mutations: {
     setUID(state, id){
-        state.userId = id;
+        state.userData.id = id;
         //console.log('UserId was set to ' + userId);
     },
     setFirstName(state, fn){
-        state.userData.firstname = fn;
+        state.userData.name = fn;
     }
   }
 })

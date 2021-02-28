@@ -83,17 +83,20 @@ export default {
     return {
       userData: "",
       userId: '',
-      posts: []
+      posts: [],
+      address: ''
     };
   },
   methods: {
     getUserData() {
-      this.axios
-        .get(
-          `http://jsonplaceholder.typicode.com/users/${this.userId}`
-        )
+      this.axios(
+        {
+          url: `http://jsonplaceholder.typicode.com/users/${this.userId}`,
+          method: 'GET'
+        })
         .then((response) => {
           this.userData = response.data;
+          console.log('asdfsdfsdfsdf');
           this.$store.commit('setName', this.userData.name);
         });
     },
@@ -112,12 +115,13 @@ export default {
       else
         this.userId = this.$route.params.id;
 
-
+      console.log('init page');
       this.getUserData();
       this.getUserPosts();
     }
   },
   mounted() {
+    console.log('mounted');
     this.initPage();
   },
   watch: {

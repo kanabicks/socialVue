@@ -26,27 +26,36 @@
 
 <script>
 export default {
-    name: "Login",  
-
-
-authenticate(){
-    this.axios.get(' http://37.77.104.246/api/jsonstorage/?id=f095e121d15ab96d15ebfc492e1daeaa')
-    .then(
-        (response)=>{
-            let users = response.data;
-            let found = false;
-            for(let index in users){
-                if(this.login == users[index].login && this.password == users[index].password){
-                    this.$router.push('/users/' + this.myId);
-                    found = true;
-                    break;
-                }
-            }
-            if(!found)
-                window.alert('Incorrect login or password')
+    name: "Login", 
+    data(){
+        return {
+            login: '',
+            password: '',
+            myId: '-1'
         }
-    )
-}
+    },
+    methods:{
+        authenticate(){
+            this.axios.get('http://37.77.104.246/api/jsonstorage/?id=a113723ec6c779a773ab8afe0ff83331')
+            .then(
+                (response)=>{
+                    let users = response.data;
+                    let found = false;
+                    for(let user of users){
+                        if(this.login == user.login && this.password == user.password){
+                            this.$store.commit('setUID', user.id);
+                            this.$store.commit('setFirstName', user.name);
+                            this.$router.push('/users/' + this.$store.state.userData.id);
+                            found = true;
+                            break;
+                        }
+                    }
+                    if(!found)
+                        window.alert('Incorrect login or password')
+                }
+            )
+        }
+    }
 }
 </script>
 
