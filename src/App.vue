@@ -35,12 +35,31 @@
           <v-list-item-content> Главная </v-list-item-content>
         </v-list-item>
 
-        <v-list-item link to="/users">
+        <v-list-item link to="/Find">
           <v-list-item-icon>
             <v-icon>mdi-account-outline</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
             Найти друзей
+          </v-list-item-content>
+        </v-list-item>
+
+        <v-list-item link to="/users/1">
+          <v-list-item-icon>
+            <v-icon>mdi-account-outline</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            Мой профиль
+          </v-list-item-content>
+        </v-list-item>
+      
+
+      <v-list-item link to="/login">
+          <v-list-item-icon>
+            <v-icon>mdi-account-outline</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            Авторизация
           </v-list-item-content>
         </v-list-item>
       </v-list>

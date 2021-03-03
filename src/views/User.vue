@@ -96,7 +96,6 @@ export default {
         })
         .then((response) => {
           this.userData = response.data;
-          console.log('asdfsdfsdfsdf');
           this.$store.commit('setName', this.userData.name);
         });
     },
