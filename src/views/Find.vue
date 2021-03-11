@@ -1,50 +1,48 @@
 <template>
   <div>
-    <v-card
-    class="mx-auto"
-    max-width="344"
-  >
-    <v-img
-      src="`https://randomuser.me/api/portraits/men/${userId}.jpg`"
-      height="200px"
-    ></v-img>
+    <v-divider></v-divider>
 
-    <v-card-title>
-      {{userData.name}}
-    </v-card-title>
+    <h2 class="my-8">Возможные друзья</h2>
 
-    <v-card-subtitle>
-      {{ userData.address.city }}
-    </v-card-subtitle>
+    <v-row v-for="(post, i) in posts" v-bind:key="i">
+        <v-col sm="8">
+            <v-card>
+              <v-card-title>
+                <v-icon large left> mdi-format-quote-open </v-icon>
+                <span class="title font-weight-bold headline">{{posts.title}}</span>
+              </v-card-title>
+        
+              <v-card-text>
+                "{{post.body}}"
+              </v-card-text>
+        
+              <v-card-actions>
+                <v-list-item class="grow">
+                  <v-list-item-avatar color="grey darken-3">
+                    <v-img
+                      class="elevation-6"
+                      alt=""
+                      
+                    ></v-img>
+                  </v-list-item-avatar>
+        
+                  <v-list-item-content>
+                    <v-list-item-title>{{userData.name}}</v-list-item-title>
+                  </v-list-item-content>
+        
+                  <v-row align="center" justify="end">
+                    <v-icon class="mr-1"> mdi-heart </v-icon>
+                    <button><span class="subheading mr-2">256</span></button>
+                    <span class="mr-1">·</span>
+                    <v-icon class="mr-1"> mdi-share-variant </v-icon>
+                    <span class="subheading">45</span>
+                  </v-row>
+                </v-list-item>
+              </v-card-actions>
+            </v-card>
+        </v-col>
+    </v-row>
 
-    <v-card-actions>
-      <v-btn
-        color="orange lighten-2"
-        text
-      >
-        {{ userData.company.name }}
-      </v-btn>
-
-      <v-spacer></v-spacer>
-
-      <v-btn
-        icon
-        @click="show = !show"
-      >
-        <v-icon>{{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
-      </v-btn>
-    </v-card-actions>
-
-    <v-expand-transition>
-      <div v-show="show">
-        <v-divider></v-divider>
-
-        <v-card-text>
-          I'm a thing. But, like most politicians, he promised more than he could deliver. You won't have time for sleeping, soldier, not with all the bed making you'll be doing. Then we'll go with that data file! Hey, you add a one and two zeros to that or we walk! You're going to do his laundry? I've got to find a way to escape.
-        </v-card-text>
-      </div>
-    </v-expand-transition>
-  </v-card>
   </div>
 </template>
 
@@ -54,7 +52,7 @@ export default {
   data() {
     return {
       userData: "",
-      userId: '2',
+      userId: '',
       posts: [],
       address: ''
     };
@@ -63,7 +61,7 @@ export default {
     getUserData() {
       this.axios(
         {
-          url: `http://jsonplaceholder.typicode.com/users/${this.userId}`,
+          url: `http://jsonplaceholder.typicode.com/users/1`,
           method: 'GET'
         })
         .then((response) => {
@@ -71,14 +69,15 @@ export default {
           this.$store.commit('setName', this.userData.name);
         });
     },
-    },
-  watch: {
-    $route() {
-      this.initPage();
+    getUserPosts() {
+      this.axios
+        .get(
+          `http://jsonplaceholder.typicode.com/posts?userId=${this.userId}`
+        )
+        .then((response) => {
+          this.posts = response.data;
+        });
     },
   },
 };
 </script>
-
-<style>
-</style>

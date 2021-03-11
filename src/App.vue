@@ -46,7 +46,7 @@
 
         <v-list-item link to="/users/1">
           <v-list-item-icon>
-            <v-icon>mdi-account-outline</v-icon>
+            <v-icon>mdi-account-box</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
             Мой профиль
@@ -56,7 +56,7 @@
 
       <v-list-item link to="/login">
           <v-list-item-icon>
-            <v-icon>mdi-account-outline</v-icon>
+            <v-icon>mdi-barcode-scan</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
             Авторизация

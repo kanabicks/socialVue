@@ -62,7 +62,7 @@
         
                   <v-row align="center" justify="end">
                     <v-icon class="mr-1"> mdi-heart </v-icon>
-                    <span class="subheading mr-2">256</span>
+                    <button><span class="subheading mr-2">256</span></button>
                     <span class="mr-1">·</span>
                     <v-icon class="mr-1"> mdi-share-variant </v-icon>
                     <span class="subheading">45</span>
@@ -114,13 +114,11 @@ export default {
       else
         this.userId = this.$route.params.id;
 
-      console.log('init page');
       this.getUserData();
       this.getUserPosts();
     }
   },
   mounted() {
-    console.log('mounted');
     this.initPage();
   },
   watch: {
